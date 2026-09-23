@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dusa LockPick</title>
+    <link rel="stylesheet" href="assets/style/main.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/8e3c7851eb.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- <div class="background">
+        <img src="assets/img/background.jpeg" alt="background-silinecek">
+    </div> -->
+    <div class="main">
+        <div id="red-cut" class="red-cut cutdiv"></div>
+        <div id="blue-cut" class="blue-cut cutdiv"></div>
+        <div id="yellow-cut" class="yellow-cut cutdiv"></div>
+
+        <div class="tape"></div>
+        <div class="shock"></div>
+
+        <div class="shock-image">
+            <img src="assets/img/electric.gif" alt="electric">
+        </div>
+          <div class="red cable">
+            <img id="redcable" src="assets/img/redcable.png" alt="redcable">
+            <img id="redcut1" src="assets/img/redcablecut1.png" alt="redcablecut">
+            <img id="redcut2" src="assets/img/redcablecut2.png" alt="redcablecut">
+          </div>
+
+          <div class="blue cable">
+            <img id="bluecable" src="assets/img/bluecable.png" alt="redcable">
+            <img id="bluecut1" src="assets/img/bluecablecut1.png" alt="bluecablecut">
+            <img id="bluecut2"  src="assets/img/bluecablecut2.png" alt="bluecablecut">
+            <img id="tapedcable" src="assets/img/tapedcable.png" alt="tapedcable">
+          </div>
+
+          <div class="yellow cable">
+            <img id="yellowcable" src="assets/img/yellowcable.png" alt="redcable">
+            <img id="yellowcut1" src="assets/img/yellowcablecut1.png" alt="yellowcablecut">
+            <img id="yellowcut2" src="assets/img/yellowcablecut2.png" alt="yellowcablecut">
+          </div>
+          <div class="othercable cable">
+            <img id="graycable" src="assets/img/graycable.png" alt="gray">
+            <img id="greencable" src="assets/img/greencable.png" alt="green">
+          </div>
+          <!-- <button id="reset">Reset</button> -->
+    </div>
+
+    <!-- KEY FOB -->
+    <div class="keypage">
+      <div class="newkey">
+          <div class="nlockarea">
+              <div class="nunlock">
+                  <i class="fa-solid fa-lock-open"></i>
+                  <img class="unlockimg2" src="assets/img/n2t.png" width="71px">
+              </div>
+              <div class="nlock">
+                  <i class="fa-solid fa-lock"></i>
+                  <img class="lockimg1" src="assets/img/n1t.png" width="71px">
+              </div>
+          </div>
+          <div class="screen">
+              <div class="slideshow-container">
+                  <div id="trunkmenudetail" class="mySlides fade inside">
+                      <div class="trunkarea">
+                          <img src="assets/img/boot.png">
+                          <p>Trunk</p>
+                      </div>
+                  </div>
+                  <div id="headlightdetail" class="mySlides fade inside">
+                      <div class="hlarea">
+                          <img src="assets/img/headlight.png">
+                          <p>Headlight</p>
+                      </div>
+                  </div>                
+                  <div id="enginemenudetail" class="mySlides fade inside">
+                      <div class="enginearea">
+                          <img src="assets/img/car-engine.png">
+                          <p>Engine</p>
+                      </div>
+                  </div>
+                  <div id="statusmenudetail" class="mySlides fade inside">
+                      <div class="statusarea">
+                          <img src="assets/img/search.png">
+                          <p>Vehicle Status</p>
+                      </div>
+                  </div>
+                  <div id="fuelmenudetail" class="mySlides fade inside">
+                      <div class="fuelarea">
+                          <img src="assets/img/fuel.png">
+                          <p>Fuel Status</p>
+                      </div>
+                  </div>                   
+              </div>
+              <div id="trunkmenu" class="trunkmenu">
+                  <div class="sctitle">
+                      <p>Trunk Setting</p>
+                  </div>
+                  <div class="scarea">
+                      <button id="opentr" class="button-28" role="button">Open</button>
+                      <button id="closetr" class="button-28" role="button">Close</button>
+                  </div>
+              </div>
+              <div id="lightmenu" class="lightmenu">
+                  <div class="sctitle">
+                      <p>Light Setting</p>
+                  </div>
+                  <div class="scarea">
+                      <button id="openli" class="button-28" role="button">On</button>
+                      <button id="closeli" class="button-28" role="button">Off</button>
+                  </div>
+              </div>
+              <div id="enginemenu" class="enginemenu">
+                  <div class="sctitle">
+                      <p>Engine Setting</p>
+                  </div>
+                  <div class="scarea">
+                      <button id="openen" class="button-28" role="button">Start</button>
+                      <button id="closeen" class="button-28" role="button">Turn Off</button>
+                  </div>
+              </div>
+              <div id="statusmenu" class="statusmenu">
+                  <div class="sctitle">
+                      <p>Vehicle Status</p>
+                  </div>
+                  <div class="scarea">
+                      <div class="progarea">
+                          <div class="box">
+                              <div class="percent">
+                                <svg>
+                                  <circle cx="70" cy="70" r="70"></circle>
+                                  <circle cx="70" cy="70" r="70"></circle>
+                                </svg>
+                                <div class="num" id="enginehealth">
+                                  <h2>87<span>%</span></h2>
+                                </div>
+                              </div>
+                              <h2 class="text">Engine Health</h2>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div id="fuelmenu" class="fuelmenu">
+                  <div class="sctitle">
+                      <p>Fuel Status</p>
+                  </div>
+                  <div class="scarea">
+                      <div class="progarea">
+                          <div class="box">
+                              <div class="percent">
+                                <svg>
+                                  <circle cx="70" cy="70" r="70"></circle>
+                                  <circle cx="70" cy="70" r="70"></circle>
+                                </svg>
+                                <div class="num" id="fuellevel">
+                                  <h2>87<span>%</span></h2>
+                                </div>
+                              </div>
+                              <h2 class="text">Amount of Fuel</h2>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <br>
+                  
+              <div class="overflow" style="text-align:center">
+                  <span class="dot" onclick="currentSlide(1)"></span> 
+                  <span class="dot" onclick="currentSlide(2)"></span> 
+                  <span class="dot" onclick="currentSlide(3)"></span> 
+                  <span class="dot" onclick="currentSlide(4)"></span> 
+                  <span class="dot" onclick="currentSlide(5)"></span> 
+              </div>
+          </div>
+          <a class="prev" onclick="plusSlides(-1)">❮</a>
+          <a class="next" onclick="plusSlides(1)">❯</a>
+          <i id="returnbutton" class="fa-solid fa-rotate-left"></i>
+          <img src="assets/img/new.svg" width="320px">
+      </div>
+
+      <div class="oldkey">
+        <div class="lockarea">
+            <div class="lockp">
+                <div class="olockarea"></div>
+                <div class="olock">
+                    <img id="olock" src="assets/img/o1t.png" width="96px" onclick="togglock(true)">
+                </div>
+            </div>
+            <div class="unlockp">
+                <div class="ounlockarea"></div>
+                <div class="ounlock">
+                    <img id="ounlock" src="assets/img/o2t.png" width="94px" onclick="togglelock(false)">
+                </div>
+            </div>
+            <div class="trunkp">
+                <div class="otrunkarea"></div>
+                <div class="otrunk">
+                    <img src="assets/img/o3t.png" width="87px">
+                </div>
+            </div>
+        </div>
+        <div class="rlight"><div class="rlight2"></div></div>
+        <img src="assets/img/okey.png" width="170px">
+    </div>
+    </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js%22%3E"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="script/main.js"></script>
+</body>
+</html>
