@@ -293,8 +293,8 @@ lib.addCommand('returnkey', { help = 'Re-issue a vehicle key to a player', restr
 end)
 
 -- Drop-in compatibility with qbx_vehiclekeys (entity-based):
---   exports.as-vehiclekeys:GiveKeys(src, vehicleEntity)
---   exports.as-vehiclekeys:RemoveKeys(src, vehicleEntity)
+--   exports['as-vehiclekeys']:GiveKeys(src, vehicleEntity)
+--   exports['as-vehiclekeys']:RemoveKeys(src, vehicleEntity)
 exports('GiveKeys', function(src, vehicle)
     if not vehicle or vehicle == 0 or not DoesEntityExist(vehicle) then return false end
     local plate = trim(GetVehicleNumberPlateText(vehicle))
