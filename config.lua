@@ -98,11 +98,11 @@ Config.Hotwire = {
 }
 
 -- Lockpicking a locked car. Requires a lockpick item (checked, never consumed on
--- use — only broken on failure). With ox_target you just look at the car and pick
--- "Lockpick" (no command, no item-use, so it won't clash with other scripts).
+-- use — only broken on failure). With as-interact/ox_target you just look at the
+-- car and pick "Lockpick" (no command, no item-use, so it won't clash with other scripts).
 Config.Lockpick = {
     enabled     = true,
-    useTarget   = true,          -- ox_target option on locked vehicles
+    useTarget   = true,          -- as-interact/ox_target option on locked vehicles (whichever is started; ox_target preferred if both are)
     command     = false,         -- set to 'lockpick' to also keep a /command
     items       = { basic = 'lockpick', advanced = 'advanced_lockpick' },
     difficulty  = { basic = { 'easy', 'medium' }, advanced = { 'easy' } },  -- oxlib fallback

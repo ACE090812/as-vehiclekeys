@@ -18,7 +18,7 @@ Works with **ox_inventory** or **qb-inventory**, and the framework and inventory
 - **Garage aware.** The key is removed when the car is stored and handed back when it's taken out, through the exports.
 
 ### Lockpicking
-- An **ox_target "Lockpick"** option appears on locked cars you don't have a key for, with no command needed. An optional `/lockpick` command is available too.
+- An **as-interact/ox_target "Lockpick"** option appears on locked cars you don't have a key for, with no command needed. An optional `/lockpick` command is available too.
 - Requires a **lockpick** or **advanced lockpick** item. The pick is checked on use, not consumed.
 - A **basic pick can snap** when you fail, and an **advanced pick** doesn't by default.
 - Picking the lock **only gets you in**. You still have to hotwire the car to drive it.
@@ -66,7 +66,7 @@ Works with **ox_inventory** or **qb-inventory**, and the framework and inventory
 | `oxmysql` | ✅ (used by `/returnkeys` and `/returnkey`) |
 | `qbx_core` **or** `qb-core` | ✅ |
 | `ox_inventory` **or** `qb-inventory` | ✅ |
-| `ox_target` | Optional. Provides the Lockpick target option. |
+| `as-interact` / `ox_target` | Optional (either one). Provides the Lockpick target option. |
 | [`t3_lockpick`](https://github.com/T3development/t3_lockpick) | Optional. Used when a minigame is set to `'t3'`, otherwise the ox_lib skill check is used. |
 
 ## Installation
@@ -102,7 +102,7 @@ If your garage already calls `qbx_vehiclekeys` (`GiveKeys` / `RemoveKeys` with a
 | **U** | Lock or unlock the nearest vehicle you hold a key for (rebindable) |
 | Use **key item** | Toggle the lock on that key's vehicle |
 | **H** | Hotwire from the driver's seat (needs a lockpick) |
-| ox_target **Lockpick** | Pick a locked car's door (needs a lockpick) |
+| as-interact/ox_target **Lockpick** | Pick a locked car's door (needs a lockpick) |
 | `/givekeys [id]` | Give a copy of the key (to the nearest player if no ID is given) |
 | `/returnkeys` | Re-issue a key for a car you own |
 | `/returnkey [id] [plate]` | **Admin.** Give any player a key |
@@ -125,7 +125,7 @@ If your garage already calls `qbx_vehiclekeys` (`GiveKeys` / `RemoveKeys` with a
 | `Config.DusaHotwire` | Cable minigame success chance, per-class chance and the working animation |
 | `Config.T3` | t3_lockpick strength, difficulty and pins for hotwire, basic and advanced |
 | `Config.Hotwire` | Enable, required items, break on fail, give a key item, lose on engine off or exit, stalling |
-| `Config.Lockpick` | Enable, ox_target option, optional command, items, difficulty, break on fail |
+| `Config.Lockpick` | Enable, as-interact/ox_target option, optional command, items, difficulty, break on fail |
 | `Config.Keys` | Lock (`U`) and hotwire (`H`) keys |
 | `Config.HornOnLock` | Horn chirp and light flash on lock and unlock |
 | `Config.LockAmbient` | Lock parked NPC cars: radius, interval, empty cars only, classes to leave unlocked |

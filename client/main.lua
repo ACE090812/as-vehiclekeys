@@ -399,6 +399,13 @@ local function doLockpick(veh)
     end
 end
 
+-- only show on locked cars you don't already have a key for
+local function lockpickCanInteract(entity)
+    if not entity or entity == 0 then return false end
+    if GetVehicleDoorLockStatus(entity) ~= 2 then return false end
+    return not fetchAccess(plateOf(entity))
+end
+
 if Config.Lockpick.enabled then
     if Config.Lockpick.useTarget and GetResourceState('ox_target') == 'started' then
         exports.ox_target:addGlobalVehicle({
@@ -407,15 +414,44 @@ if Config.Lockpick.enabled then
                 icon     = 'fa-solid fa-unlock',
                 label    = 'Lockpick',
                 distance = 2.0,
-                -- only show on locked cars you don't already have a key for
-                canInteract = function(entity)
-                    if not entity or entity == 0 then return false end
-                    if GetVehicleDoorLockStatus(entity) ~= 2 then return false end
-                    return not fetchAccess(plateOf(entity))
-                end,
+                canInteract = lockpickCanInteract,
                 onSelect = function(data) doLockpick(data.entity) end,
             },
         })
+    elseif Config.Lockpick.useTarget and GetResourceState('as-interact') == 'started' then
+        -- ox_target has a "global vehicle" export that tracks every vehicle automatically;
+        -- as-interact doesn't, so poll nearby vehicles and add/remove a per-vehicle interaction.
+        CreateThread(function()
+            local tracked = {} -- [vehicle] = interaction id
+            while true do
+                local pos = GetEntityCoords(PlayerPedId())
+                local seen = {}
+                for _, veh in ipairs(GetGamePool('CVehicle')) do
+                    if DoesEntityExist(veh) and #(pos - GetEntityCoords(veh)) <= 10.0 then
+                        seen[veh] = true
+                        if not tracked[veh] then
+                            tracked[veh] = exports['as-interact']:AddEntityInteraction({
+                                netId = NetworkGetNetworkIdFromEntity(veh),
+                                distance = 2.0,
+                                interactDst = 2.0,
+                                options = {
+                                    { name = 'as-vehiclekeys_lockpick', label = 'Lockpick',
+                                      canInteract = function() return lockpickCanInteract(veh) end,
+                                      action = function() doLockpick(veh) end },
+                                },
+                            })
+                        end
+                    end
+                end
+                for veh, id in pairs(tracked) do
+                    if not seen[veh] then
+                        exports['as-interact']:RemoveInteraction(id)
+                        tracked[veh] = nil
+                    end
+                end
+                Wait(2000)
+            end
+        end)
     end
     if Config.Lockpick.command then
         RegisterCommand(Config.Lockpick.command, function() doLockpick(nil) end, false)
